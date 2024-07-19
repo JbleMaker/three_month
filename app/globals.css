@@ -2,8 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  a {
-    @apply text-white hover:underline;
+@layer components {
+  .primary-btn {
+    @apply w-full bg-btncolor-100 hover:bg-btncolor-200 rounded-lg text-center text-white transition-colors;
+  }
+
+  .sns-create {
+    @apply w-12 h-12 bg-boxcolor-200 hover:bg-boxcolor-300 rounded-3xl p-2 flex justify-center items-center;
   }
 }
+
+/* #372a57 */

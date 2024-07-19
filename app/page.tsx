@@ -10,7 +10,7 @@ export default function Home() {
         <h1 className="text-center text-xl ">THREEMONTH</h1>
       </div>
       <div className="flex flex-col items-center gap-3 w-full">
-        <Link href="/create-account" className="primary-btn text-lg py-2.5">
+        <Link href="/create-account" className="primary-btn text-xl py-3">
           시작하기
         </Link>
         <div className="flex gap-3">
