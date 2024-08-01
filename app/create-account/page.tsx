@@ -1,8 +1,13 @@
+"use client";
+
 import FormInput from "@/components/form-input";
 import FormButton from "@/components/form-btn";
 import SocialLogin from "@/components/social-login";
+import { createAccount } from "./action";
+import { useFormState } from "react-dom";
 
 export default function CreateAccount() {
+  const [state, dispatch] = useFormState(createAccount, null);
   return (
     <div className=" py-8 px-6">
       <div className="flex flex-col gap-10">
@@ -11,36 +16,27 @@ export default function CreateAccount() {
           <h2 className="text-xl">Fill in the form below to Join!</h2>
         </div>
 
-        <form className="flex flex-col gap-3">
+        <form action={dispatch} className="flex flex-col gap-3">
           <FormInput
             type="text"
             placeholder="Username"
-            errors={[]}
             required
             name="username"
           />
-          <FormInput
-            type="email"
-            placeholder="Email"
-            errors={[]}
-            required
-            name="email"
-          />
+          <FormInput type="email" placeholder="Email" required name="email" />
           <FormInput
             type="password"
             placeholder="Password"
-            errors={[]}
             required
             name="password"
           />
           <FormInput
             type="password"
             placeholder="Password Confirm"
-            errors={[]}
             required
-            name="passwordConfirm"
+            name="passwordconfirm"
           />
-          <FormButton loading={false} text="Create Account" />
+          <FormButton text="Create Account" />
         </form>
       </div>
       <SocialLogin />

@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function SocialLogin() {
   return (
     <>
-      <div className="w-full h-px bg-neutral-500 my-3" />
+      <div className="w-full h-px bg-neutral-500 my-10" />
 
       <div className="flex flex-col items-center justify-center">
         <span className="font-medium text-xl">Sign up SNS</span>
