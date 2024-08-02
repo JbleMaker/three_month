@@ -19,22 +19,31 @@ export default function CreateAccount() {
         <form action={dispatch} className="flex flex-col gap-3">
           <FormInput
             type="text"
-            placeholder="Username"
+            placeholder="이름"
             required
             name="username"
+            errors={state?.fieldErrors.username}
           />
-          <FormInput type="email" placeholder="Email" required name="email" />
+          <FormInput
+            type="email"
+            placeholder="Email"
+            required
+            name="email"
+            errors={state?.fieldErrors.email}
+          />
           <FormInput
             type="password"
-            placeholder="Password"
+            placeholder="비밀번호"
             required
             name="password"
+            errors={state?.fieldErrors.password}
           />
           <FormInput
             type="password"
-            placeholder="Password Confirm"
+            placeholder="비밀번호 확인"
             required
-            name="passwordconfirm"
+            name="password_confirm"
+            errors={state?.fieldErrors.password_confirm}
           />
           <FormButton text="Create Account" />
         </form>

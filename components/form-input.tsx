@@ -21,11 +21,11 @@ export default function FormInput({
         required={required}
         name={name}
       />
-      {/* {errors.map((error, index) => (
+      {errors?.map((error, index) => (
         <span key={index} className="text-red-400 font-medium ">
           {errors}
         </span>
-      ))} */}
+      ))}
     </div>
   );
 }
