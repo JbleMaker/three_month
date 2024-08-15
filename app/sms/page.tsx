@@ -1,6 +1,17 @@
-import FormInput from "@/components/form-input";
-import FormButton from "@/components/form-btn";
+"use client";
+
+import Input from "@/components/input";
+import Button from "@/components/button";
+import { useFormState } from "react-dom";
+import { smsLogin } from "./action";
+
+const initialState = {
+  token: false,
+  error: undefined,
+};
+
 export default function SMSLogin() {
+  const [state, dispatch] = useFormState(smsLogin, initialState);
   return (
     <div className=" py-8 px-6">
       <div className="flex flex-col gap-10">
@@ -9,22 +20,27 @@ export default function SMSLogin() {
           <h2 className="text-xl">Verify your Phone Number.</h2>
         </div>
 
-        <form className="flex flex-col gap-3">
-          <FormInput
-            type="number"
+        <form action={dispatch} className="flex flex-col gap-3">
+          <Input
+            type="text"
             placeholder="Phone Number"
-            errors={[]}
             required
-            name="Phone Number"
+            name="phone"
+            defaultValue="+82"
+            errors={state.error?.formErrors}
           />
-          <FormInput
-            type="number"
-            placeholder="인증번호"
-            errors={[]}
-            required
-            name="인증번호"
-          />
-          <FormButton loading={false} text="인증번호 확인" />
+          {state?.token ? (
+            <Input
+              type="number"
+              placeholder="인증번호"
+              errors={state.error?.formErrors}
+              required
+              name="token"
+              min={100000}
+              max={999999}
+            />
+          ) : null}
+          <Button text={state.token ? "인증번호 확인" : "인증번호 보내기"} />
         </form>
       </div>
     </div>
