@@ -1,0 +1,25 @@
+//prisma에게 데이터가 DB에 어떻게 저정될지 설명.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  username   String   @unique
+  email      String?  @unique
+  password   String?
+  phone      String?  @unique
+  github_id  String?  @unique
+  kakao_id   String?  @unique
+  apple_id   String?  @unique
+  google_id  String?  @unique
+  avatar     String?  @default("http://img")
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
