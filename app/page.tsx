@@ -1,6 +1,7 @@
 import Image from "next/image";
 import logoB from "../logo/logotypeB_white.png";
 import Link from "next/link";
+import "@/lib/db";
 
 export default function Home() {
   return (

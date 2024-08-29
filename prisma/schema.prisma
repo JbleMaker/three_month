@@ -10,16 +10,34 @@ datasource db {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  username   String   @unique
-  email      String?  @unique
+  id         Int        @id @default(autoincrement())
+  username   String     @unique
+  email      String?    @unique
   password   String?
-  phone      String?  @unique
-  github_id  String?  @unique
-  kakao_id   String?  @unique
-  apple_id   String?  @unique
-  google_id  String?  @unique
-  avatar     String?  @default("http://img")
+  phone      String?    @unique
+  github_id  String?    @unique
+  kakao_id   String?    @unique
+  apple_id   String?    @unique
+  google_id  String?    @unique
+  avatar     String?    @default("http://img")
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  SMSToken   SMSToken[]
+}
+
+model SMSToken {
+  id         Int      @id @default(autoincrement())
+  token      String   @unique
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
 }
+
+//Cascade => 부모 레코드가 삭제되면 자식 레코드들이 지워진다.
+
+//SetNull => 사용자가 삭제되었을때 user를 null로 만든다. 단, user를 optional이여야 함.
+//사용자를 삭제할 경우 사용자의 모든 token들이 userId를 null을 가지게 됨.
+
+//Restrict => 부모레코드가 참조되고 있는동안은 삭제가 불가능.
+//token을 삭제한 후 user 삭제가능.
